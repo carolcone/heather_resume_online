@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heather Blum — Production Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     Heather Blum — Film PA Resume
+     Aesthetic: aged call-sheet paper, cinematic title typography,
+     production-document sensibility with editorial restraint.
+     ============================================================ */
+
+  :root {
+    --paper:      #faf7ef;   /* soft warm off-white */
+    --paper-2:    #f1ebda;
+    --paper-3:    #ffffff;   /* pure white for cards */
+    --ink:        #1a1612;
+    --ink-soft:   #4a4338;
+    --ink-faded:  #9a9285;
+    --red:        #a8221c;
+    --red-dark:   #7a1813;
+    --amber:      #b88420;
+    --rule:       #1a1612;
+    --max:        1180px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 16px;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* ---------- Paper texture & grain ---------- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at top left,    rgba(168,34,28,0.025), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(184,132,32,0.03), transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 200;
+    opacity: 0.09;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1, 0 0 0 0 0.09, 0 0 0 0 0.07, 0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* ---------- HUD: frame counter + timecode ---------- */
+  .hud {
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    z-index: 150;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.5;
+    pointer-events: none;
+  }
+  .hud .red-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--red);
+    margin-right: 6px;
+    vertical-align: middle;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+  }
+
+  /* ---------- Document container ---------- */
+  .doc {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 32px 48px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ---------- Top metadata strip (call sheet header) ---------- */
+  .meta-strip {
+    border-top:    1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    padding: 8px 4px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 56px;
+  }
+  .meta-strip span { white-space: nowrap; }
+  .meta-strip .meta-key { color: var(--ink-faded); margin-right: 6px; }
+
+  /* ---------- HERO ---------- */
+  .hero { padding: 12px 0 64px; position: relative; }
+
+  .hero-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 36px;
+    height: 1px;
+    background: var(--red);
+  }
+
+  .hero-name {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'SOFT' 0, 'wght' 500;
+    font-size: clamp(72px, 14vw, 200px);
+    line-height: 0.86;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .hero-name .ampersand-line {
+    display: block;
+    margin-left: 0;
+  }
+  .hero-name .last {
+    display: block;
+    font-style: normal;
+    font-variation-settings: 'opsz' 144, 'SOFT' 0, 'wght' 700;
+    color: var(--red);
+    margin-left: 8%;
+  }
+
+  .hero-meta {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1.5px solid var(--ink);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .hero-meta .key {
+    display: block;
+    color: var(--ink-faded);
+    margin-bottom: 4px;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+  }
+  .hero-meta .val {
+    color: var(--ink);
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 13px;
+  }
+  .hero-meta a { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--ink); }
+  .hero-meta a:hover { color: var(--red); border-color: var(--red); }
+
+  /* ---------- Scene markers ---------- */
+  .scene {
+    padding: 64px 0 24px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .scene.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scene-head {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 36px;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 16px;
+  }
+  .scene-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--red);
+    text-transform: uppercase;
+    font-weight: 500;
+    flex-shrink: 0;
+    padding-top: 6px;
+  }
+  .scene-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 72, 'wght' 600, 'SOFT' 0;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    flex: 1;
+  }
+  .scene-aside {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+    padding-top: 12px;
+  }
+
+  /* ---------- SCENE 01 — LOGLINE ---------- */
+  .logline {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 36, 'wght' 350, 'SOFT' 100;
+    font-size: clamp(20px, 2.4vw, 28px);
+    line-height: 1.42;
+    color: var(--ink);
+    max-width: 880px;
+    font-style: italic;
+    letter-spacing: -0.005em;
+  }
+  .logline::first-letter {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--red);
+  }
+
+  /* ---------- SCENE 02 — ACTING REEL ---------- */
+  .reel-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+    padding: 8px 12px;
+    border-left: 3px solid var(--amber);
+    background: rgba(200,144,44,0.08);
+  }
+
+  .reel-strip {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding: 8px 4px 32px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .reel-strip::-webkit-scrollbar { height: 6px; }
+  .reel-strip::-webkit-scrollbar-track { background: transparent; }
+  .reel-strip::-webkit-scrollbar-thumb { background: var(--ink-faded); border-radius: 3px; }
+
+  .reel-card {
+    flex: 0 0 320px;
+    aspect-ratio: 4 / 3;
+    border: 1.5px solid var(--ink);
+    background: var(--paper-3);
+    position: relative;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    scroll-snap-align: start;
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s;
+    cursor: default;
+  }
+  .reel-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 6px 8px 0 var(--ink);
+  }
+  .reel-card.placeholder {
+    border-style: dashed;
+    background: transparent;
+  }
+  .reel-card .slate-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink-soft);
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+  .reel-card .slate-bars {
+    height: 18px;
+    margin: 8px -22px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--ink) 0, var(--ink) 12px,
+      var(--paper-3) 12px, var(--paper-3) 24px
+    );
+  }
+  .reel-card.placeholder .slate-bars {
+    background: repeating-linear-gradient(
+      90deg,
+      var(--ink-faded) 0, var(--ink-faded) 12px,
+      transparent 12px, transparent 24px
+    );
+    opacity: 0.4;
+  }
+  .reel-card .role {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 48, 'wght' 600;
+    font-size: 26px;
+    line-height: 1.05;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .reel-card.placeholder .role {
+    color: var(--ink-faded);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .reel-card .project {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+  .reel-card .credit-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+    border-top: 1px dashed var(--ink-soft);
+    padding-top: 8px;
+  }
+
+  /* ---------- SCENE 03 — DEPARTMENT QUALIFICATIONS ---------- */
+  .stamps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .stamp {
+    border: 2.5px solid var(--red);
+    padding: 18px 18px 16px;
+    position: relative;
+    background: rgba(168, 34, 28, 0.04);
+    transform: rotate(-0.5deg);
+    transition: transform 0.3s ease, background 0.3s ease;
+    cursor: default;
+  }
+  .stamp:nth-child(2n)  { transform: rotate(0.4deg);  }
+  .stamp:nth-child(3n)  { transform: rotate(-0.3deg); }
+  .stamp:nth-child(4n)  { transform: rotate(0.6deg);  }
+  .stamp:hover {
+    transform: rotate(0deg) scale(1.02);
+    background: rgba(168, 34, 28, 0.08);
+  }
+  .stamp .stamp-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .stamp .stamp-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 24, 'wght' 600;
+    font-size: 18px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .stamp .stamp-body {
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- SCENE 04 — CREW CREDITS (filmstrip) ---------- */
+  .filmstrip {
+    margin-left: 36px;
+    border-left: 1.5px solid var(--ink);
+    position: relative;
+  }
+  /* Sprocket holes on the strip's left */
+  .filmstrip::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: -36px;
+    width: 30px;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0, transparent 14px,
+        var(--ink) 14px, var(--ink) 16px,
+        transparent 16px, transparent 38px
+      );
+    opacity: 0.18;
+  }
+
+  .credit {
+    padding: 22px 0 22px 28px;
+    border-bottom: 1px dashed var(--ink-faded);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+  .credit:last-child { border-bottom: none; }
+  .credit:hover { background: rgba(26, 22, 18, 0.025); }
+  .credit::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 32px;
+    width: 12px; height: 12px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    transform: rotate(45deg);
+    transition: background 0.3s ease;
+  }
+  .credit.expanded::before { background: var(--red); border-color: var(--red); }
+
+  .credit-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px 24px;
+  }
+  .credit-role {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 36, 'wght' 500;
+    font-size: 24px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+  .credit-org {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .credit-org .loc {
+    color: var(--ink-faded);
+    font-weight: 400;
+  }
+  .credit-dates {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .credit-toggle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-top: 8px;
+    user-select: none;
+    transition: opacity 0.3s ease;
+  }
+  .credit.expanded .credit-toggle::before { content: '— '; }
+  .credit:not(.expanded) .credit-toggle::before { content: '+ '; }
+
+  .credit-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .credit.expanded .credit-detail { max-height: 400px; }
+  .credit-detail ul {
+    list-style: none;
+    margin-top: 16px;
+    padding-left: 0;
+  }
+  .credit-detail li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 8px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .credit-detail li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+    font-size: 12px;
+    top: 2px;
+  }
+
+  /* ---------- SCENE 05 — TRAINING ---------- */
+  .training {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .training-block {
+    flex: 1;
+    min-width: 260px;
+  }
+  .training-school {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 48, 'wght' 600;
+    font-size: 28px;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .training-degree {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .training-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faded);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .gpa-stamp {
+    border: 2.5px solid var(--amber);
+    color: var(--amber);
+    padding: 14px 22px;
+    transform: rotate(-3deg);
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    flex-shrink: 0;
+  }
+  .gpa-stamp .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .gpa-stamp .val {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    font-style: italic;
+  }
+
+  /* ---------- SCENE 06 + 07 — Background lists ---------- */
+  .bg-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .bg-list li {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 18px;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--ink-faded);
+    align-items: baseline;
+  }
+  .bg-list li:last-child { border-bottom: none; }
+  .bg-list .yr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--red);
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    padding-top: 2px;
+  }
+  .bg-list .body {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .bg-list .body strong {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 24, 'wght' 600;
+    font-size: 17px;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 2px;
+    letter-spacing: -0.005em;
+  }
+  .bg-list .body .award {
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 13.5px;
+  }
+
+  .vol-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .vol-item {
+    padding: 14px 16px;
+    border-left: 2px solid var(--amber);
+    background: rgba(200, 144, 44, 0.05);
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+
+  /* ---------- FADE OUT ---------- */
+  .end {
+    margin-top: 96px;
+    padding: 64px 0 40px;
+    text-align: center;
+    border-top: 1.5px solid var(--ink);
+  }
+  .fade-out {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'wght' 400, 'SOFT' 50;
+    font-style: italic;
+    font-size: clamp(48px, 9vw, 120px);
+    color: var(--ink);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .end-meta {
+    margin-top: 32px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+  }
+  .end-contact {
+    margin-top: 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+  }
+  .end-contact a {
+    color: var(--red);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .end-contact a:hover { border-bottom-color: var(--red); }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 720px) {
+    .doc { padding: 24px 22px 60px; }
+    .meta-strip { font-size: 9px; }
+    .hud { font-size: 9px; top: 10px; right: 12px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .scene-head { flex-direction: column; gap: 6px; align-items: flex-start; }
+    .scene-aside { padding-top: 0; }
+    .filmstrip { margin-left: 24px; }
+    .filmstrip::before { left: -24px; width: 20px; }
+    .credit { padding-left: 22px; }
+    .reel-card { flex: 0 0 280px; }
+    .credit-head { flex-direction: column; gap: 4px; }
+    .training { flex-direction: column-reverse; }
+    .gpa-stamp { align-self: flex-start; }
+    .bg-list li { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    body { background: white; color: black; }
+    body::before, .grain, .hud { display: none; }
+    .doc { max-width: 100%; padding: 0; }
+    .scene { opacity: 1; transform: none; page-break-inside: avoid; }
+    .credit-detail { max-height: none !important; }
+    .credit { cursor: default; }
+    .credit-toggle { display: none; }
+    .reel-strip { flex-wrap: wrap; overflow: visible; }
+    .reel-card { flex: 0 0 calc(33% - 12px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- film grain overlay -->
+<div class="grain"></div>
+
+<!-- HUD: live frame + timecode -->
+<div class="hud">
+  <div><span class="red-dot"></span>REC</div>
+  <div>FRAME <span id="frame-num">0001</span> / <span id="frame-total">0247</span></div>
+  <div>TC <span id="tc">01:00:00:00</span></div>
+</div>
+
+<main class="doc">
+
+  <!-- ===== Top metadata strip ===== -->
+  <div class="meta-strip">
+    <span><span class="meta-key">DOC</span>RESUME — REV.A</span>
+    <span><span class="meta-key">DATE</span>05.05.26</span>
+    <span><span class="meta-key">DAY</span>01 OF 01</span>
+    <span><span class="meta-key">PROD</span>HEATHER BLUM / HIRE</span>
+    <span><span class="meta-key">PG</span>1 OF 1</span>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="hero-label">Production Assistant — Available for Immediate Hire</div>
+    <h1 class="hero-name">
+      Heather
+      <span class="last">Blum.</span>
+    </h1>
+    <div class="hero-meta">
+      <div>
+        <span class="key">Based</span>
+        <span class="val">Savannah, GA</span>
+      </div>
+      <div>
+        <span class="key">Phone</span>
+        <span class="val">224 · 234 · 7132</span>
+      </div>
+      <div>
+        <span class="key">Email</span>
+        <span class="val"><a href="mailto:hblum1224@gmail.com">hblum1224@gmail.com</a></span>
+      </div>
+      <div>
+        <span class="key">Status</span>
+        <span class="val">SCAD '26 — On Set</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== SCENE 01 — LOGLINE ===== -->
+  <section class="scene" data-scene="01">
+    <div class="scene-head">
+      <div class="scene-num">SC. 01</div>
+      <h2 class="scene-title">Logline</h2>
+      <div class="scene-aside">EST. INT. — TITLE</div>
+    </div>
+    <p class="logline">
+      Performing Arts BFA candidate at Savannah College of Art and Design seeking PA work
+      on film and television sets. Comfortable on set from years of acting and performance
+      training, with the work ethic and stamina built from high-volume hospitality, retail,
+      and fitness roles. Reliable, organized, and quick to take direction — happy to do
+      whatever the production needs.
+    </p>
+  </section>
+
+  <!-- ===== SCENE 02 — ACTING REEL ===== -->
+  <section class="scene" data-scene="02">
+    <div class="scene-head">
+      <div class="scene-num">SC. 02</div>
+      <h2 class="scene-title">Acting Reel</h2>
+      <div class="scene-aside">SLATE / TAKE / PRINT</div>
+    </div>
+    <div class="reel-note">
+      // Replace these placeholder cards with real credits — student films, SCAD productions,
+      theater, commercials. Format: ROLE / PROJECT / DIR. / YEAR.
+    </div>
+    <div class="reel-strip">
+      <div class="reel-card placeholder">
+        <div class="slate-top"><span>SCENE 01A</span><span>TAKE 01</span></div>
+        <div class="slate-bars"></div>
+        <div>
+          <div class="role">Add Credit</div>
+          <div class="project">Project Title</div>
+        </div>
+        <div class="credit-meta">DIR. NAME · YEAR · MEDIUM</div>
+      </div>
+      <div class="reel-card placeholder">
+        <div class="slate-top"><span>SCENE 02B</span><span>TAKE 03</span></div>
+        <div class="slate-bars"></div>
+        <div>
+          <div class="role">Add Credit</div>
+          <div class="project">Project Title</div>
+        </div>
+        <div class="credit-meta">DIR. NAME · YEAR · MEDIUM</div>
+      </div>
+      <div class="reel-card placeholder">
+        <div class="slate-top"><span>SCENE 03A</span><span>TAKE 02</span></div>
+        <div class="slate-bars"></div>
+        <div>
+          <div class="role">Add Credit</div>
+          <div class="project">Project Title</div>
+        </div>
+        <div class="credit-meta">DIR. NAME · YEAR · MEDIUM</div>
+      </div>
+      <div class="reel-card placeholder">
+        <div class="slate-top"><span>SCENE 04C</span><span>TAKE 01</span></div>
+        <div class="slate-bars"></div>
+        <div>
+          <div class="role">Add Credit</div>
+          <div class="project">Project Title</div>
+        </div>
+        <div class="credit-meta">DIR. NAME · YEAR · MEDIUM</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 03 — DEPARTMENT QUALIFICATIONS ===== -->
+  <section class="scene" data-scene="03">
+    <div class="scene-head">
+      <div class="scene-num">SC. 03</div>
+      <h2 class="scene-title">Department Qualifications</h2>
+      <div class="scene-aside">PROD. SKILLS</div>
+    </div>
+    <div class="stamps">
+      <div class="stamp">
+        <div class="stamp-tag">★ Approved</div>
+        <div class="stamp-title">Set Etiquette</div>
+        <div class="stamp-body">Trained actor — knows hierarchy, call-time discipline, and how a set actually runs.</div>
+      </div>
+      <div class="stamp">
+        <div class="stamp-tag">★ Approved</div>
+        <div class="stamp-title">Communication</div>
+        <div class="stamp-body">Comfortable taking direction and relaying information clearly across teams.</div>
+      </div>
+      <div class="stamp">
+        <div class="stamp-tag">★ Approved</div>
+        <div class="stamp-title">Long-Day Stamina</div>
+        <div class="stamp-body">Dance training, yoga teaching, and restaurant shifts — built for 12+ hour days.</div>
+      </div>
+      <div class="stamp">
+        <div class="stamp-tag">★ Approved</div>
+        <div class="stamp-title">Pace Under Pressure</div>
+        <div class="stamp-body">Fine-dining and retail rush hours — multitasks fast without dropping detail.</div>
+      </div>
+      <div class="stamp">
+        <div class="stamp-tag">★ Approved</div>
+        <div class="stamp-title">Leadership</div>
+        <div class="stamp-body">Captain of a 30+ member varsity dance team — keeps groups moving on time.</div>
+      </div>
+      <div class="stamp">
+        <div class="stamp-tag">★ Approved</div>
+        <div class="stamp-title">Tools & Transit</div>
+        <div class="stamp-body">Google Workspace, basic spreadsheets, valid driver's license, reliable transportation.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 04 — CREW CREDITS ===== -->
+  <section class="scene" data-scene="04">
+    <div class="scene-head">
+      <div class="scene-num">SC. 04</div>
+      <h2 class="scene-title">Crew Credits</h2>
+      <div class="scene-aside">WORK HISTORY · TAP TO EXPAND</div>
+    </div>
+    <div class="filmstrip">
+
+      <article class="credit">
+        <div class="credit-head">
+          <div>
+            <div class="credit-role">Yoga &amp; Barre Teacher</div>
+            <div class="credit-org">Soar Bungee Fitness <span class="loc">— Savannah, GA</span></div>
+          </div>
+          <div class="credit-dates">Oct 2025 — Present</div>
+        </div>
+        <div class="credit-toggle">DETAILS</div>
+        <div class="credit-detail">
+          <ul>
+            <li>Lead group fitness classes; cue, adapt, and hold attention across mixed-skill groups.</li>
+            <li>Certifications: Hot Hatha 26&amp;2 (75 HR) and 200HR Yoga Teacher Training.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="credit">
+        <div class="credit-head">
+          <div>
+            <div class="credit-role">Retail Sales Associate &amp; Stylist</div>
+            <div class="credit-org">URBN — Free People · Anthropologie · Urban Outfitters <span class="loc">— Savannah, GA</span></div>
+          </div>
+          <div class="credit-dates">2023 — Present</div>
+        </div>
+        <div class="credit-toggle">DETAILS</div>
+        <div class="credit-detail">
+          <ul>
+            <li>Stylist across multiple top-producing downtown stores for a global consumer brand.</li>
+            <li>Build rapport with customers, support visual merchandising, and keep pace on busy floors.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="credit">
+        <div class="credit-head">
+          <div>
+            <div class="credit-role">Food Runner / Host / Server Assistant</div>
+            <div class="credit-org">Chive Sea Bar and Lounge <span class="loc">— Savannah, GA</span></div>
+          </div>
+          <div class="credit-dates">May 2024 — May 2025</div>
+        </div>
+        <div class="credit-toggle">DETAILS</div>
+        <div class="credit-detail">
+          <ul>
+            <li>Supported a high-volume fine-dining team in Savannah's Historic District.</li>
+            <li>Coordinated rapidly between front of house and kitchen during peak service.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="credit">
+        <div class="credit-head">
+          <div>
+            <div class="credit-role">Barista &amp; Food Server</div>
+            <div class="credit-org">Paris Market and Brocante <span class="loc">— Savannah, GA</span></div>
+          </div>
+          <div class="credit-dates">2023 — 2024</div>
+        </div>
+        <div class="credit-toggle">DETAILS</div>
+        <div class="credit-detail">
+          <ul>
+            <li>Worked bar and floor in a busy local cafe; maintained pace and accuracy under pressure.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="credit">
+        <div class="credit-head">
+          <div>
+            <div class="credit-role">Certified Lifeguard</div>
+            <div class="credit-org">Lifetime Fitness <span class="loc">— San Antonio, TX</span></div>
+          </div>
+          <div class="credit-dates">2021 — 2022</div>
+        </div>
+        <div class="credit-toggle">DETAILS</div>
+        <div class="credit-detail">
+          <ul>
+            <li>Maintained constant vigilance and emergency readiness around large groups.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="credit">
+        <div class="credit-head">
+          <div>
+            <div class="credit-role">Dance Instructor</div>
+            <div class="credit-org">Heather Stolle School of Dance <span class="loc">— San Antonio, TX</span></div>
+          </div>
+          <div class="credit-dates">2021 — 2022</div>
+        </div>
+        <div class="credit-toggle">DETAILS</div>
+        <div class="credit-detail">
+          <ul>
+            <li>Taught technique and choreography to students across age groups and skill levels.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== SCENE 05 — TRAINING ===== -->
+  <section class="scene" data-scene="05">
+    <div class="scene-head">
+      <div class="scene-num">SC. 05</div>
+      <h2 class="scene-title">Training</h2>
+      <div class="scene-aside">EDU.</div>
+    </div>
+    <div class="training">
+      <div class="training-block">
+        <div class="training-school">Savannah College of Art &amp; Design</div>
+        <div class="training-degree">BFA, Performing Arts — Savannah, GA</div>
+        <div class="training-date">Sep 2022 — Mar 2026</div>
+      </div>
+      <div class="gpa-stamp">
+        <span class="label">GPA</span>
+        <span class="val">3.8</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 06 — PERFORMANCE BACKGROUND ===== -->
+  <section class="scene" data-scene="06">
+    <div class="scene-head">
+      <div class="scene-num">SC. 06</div>
+      <h2 class="scene-title">Performance Background</h2>
+      <div class="scene-aside">PRIOR EXP.</div>
+    </div>
+    <ul class="bg-list">
+      <li>
+        <div class="yr">'21–'22</div>
+        <div class="body">
+          <strong>Colonel &amp; Captain — Varsity Diamond Dance Team</strong>
+          Ronald Reagan HS · Led a 30+ member team in choreography and morale.
+          <span class="award">Runner-Up, Miss Showmaker of America (2021 Officer Training Camp).</span>
+        </div>
+      </li>
+      <li>
+        <div class="yr">'19–'20</div>
+        <div class="body">
+          <strong>Junior Captain — Varsity Diamond Dance Team</strong>
+          Ronald Reagan HS · <span class="award">Recipient of Miss Turns and Miss Kicks awards.</span>
+        </div>
+      </li>
+      <li>
+        <div class="yr">'18–'19</div>
+        <div class="body">
+          <strong>Pep Team Dancer</strong>
+          Ronald Reagan HS · <span class="award">Citrus Bowl All-American Halftime Cast · Most Spirited · Charmer of the Week.</span>
+        </div>
+      </li>
+      <li>
+        <div class="yr">'18–'20</div>
+        <div class="body">
+          <strong>Concert Choir, Soprano</strong>
+          Ronald Reagan HS.
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== SCENE 07 — ADDITIONAL ===== -->
+  <section class="scene" data-scene="07">
+    <div class="scene-head">
+      <div class="scene-num">SC. 07</div>
+      <h2 class="scene-title">Additional</h2>
+      <div class="scene-aside">VOLUNTEER</div>
+    </div>
+    <div class="vol-grid">
+      <div class="vol-item">Ronald Reagan HS Dance Clinic assistant (2019, 2020).</div>
+      <div class="vol-item">Ran concessions for Ronald Reagan HS fundraising event (2021).</div>
+      <div class="vol-item">Hand-sewed dresses for <em>Little Dresses for Africa</em>.</div>
+      <div class="vol-item">Styled hair and wardrobe for a group quinceañera serving underprivileged girls.</div>
+      <div class="vol-item">Volunteer, San Antonio Food Bank Distribution Center.</div>
+    </div>
+  </section>
+
+  <!-- ===== END ===== -->
+  <footer class="end">
+    <div class="fade-out">Fade out.</div>
+    <div class="end-meta">End of document — page 1 of 1</div>
+    <div class="end-contact">
+      <a href="tel:2242347132">224.234.7132</a> &nbsp;·&nbsp;
+      <a href="mailto:hblum1224@gmail.com">hblum1224@gmail.com</a>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  // ============================================================
+  // 1. Live frame counter + timecode (ties scroll position to film metaphor)
+  // ============================================================
+  const frameNum   = document.getElementById('frame-num');
+  const frameTotal = document.getElementById('frame-total');
+  const tcEl       = document.getElementById('tc');
+
+  // Pick a "total frames" that scales loosely with content height.
+  const docHeight = () => Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  let totalFrames = 247;
+  frameTotal.textContent = String(totalFrames).padStart(4, '0');
+
+  function pad(n, w) { return String(n).padStart(w, '0'); }
+
+  function updateHud() {
+    const ratio = Math.min(1, Math.max(0, window.scrollY / docHeight()));
+    const cur = Math.round(ratio * totalFrames);
+    frameNum.textContent = pad(cur, 4);
+
+    // 24fps timecode starting at 01:00:00:00
+    const totalSeconds = cur / 24;
+    const hh = 1 + Math.floor(totalSeconds / 3600);
+    const mm = Math.floor((totalSeconds % 3600) / 60);
+    const ss = Math.floor(totalSeconds % 60);
+    const ff = cur % 24;
+    tcEl.textContent = `${pad(hh,2)}:${pad(mm,2)}:${pad(ss,2)}:${pad(ff,2)}`;
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { updateHud(); ticking = false; });
+      ticking = true;
+    }
+  });
+  window.addEventListener('resize', updateHud);
+  updateHud();
+
+  // ============================================================
+  // 2. Scroll-triggered fade-in for scenes
+  // ============================================================
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.scene').forEach(s => io.observe(s));
+
+  // ============================================================
+  // 3. Click-to-expand on crew credits
+  // ============================================================
+  document.querySelectorAll('.credit').forEach(c => {
+    c.addEventListener('click', () => {
+      c.classList.toggle('expanded');
+    });
+  });
+
+  // Open the first credit by default for visual interest
+  const firstCredit = document.querySelector('.credit');
+  if (firstCredit) firstCredit.classList.add('expanded');
+</script>
+
+</body>
+</html>
